@@ -28,6 +28,11 @@ import org.springframework.cloud.context.named.NamedContextFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
+ * 用来创建ribbon ILoadBalancer的工厂。
+ * 每个服务的多个实例共用一个ILoadBalancer，
+ * ILoadBalancer的创建使用名称隔离的NamedContextFactory的spring工厂隔离。
+ * 即每个ILoadBalancer都有一个不共享的spring上下文。
+ *
  * A factory that creates client, load balancer and client configuration instances. It
  * creates a Spring ApplicationContext per client name, and extracts the beans that it
  * needs from there.

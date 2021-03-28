@@ -113,6 +113,12 @@ public class RibbonAutoConfiguration {
 				ribbonEagerLoadProperties.getClients());
 	}
 
+	/**
+	 * ribbon对于RestTemplate的定制化和SpringCloudCommons的原生配置中采取了不一样的思路。
+	 * 原生配置中采取的思路是通过拦截器拦截请求，然后替换HttpRequest，覆写获取URI的方法
+	 * ribbon中采取的思路是通过替换HttpRequest的创建工厂，直接在创建HttpRequest的时候通过负载均衡器替换掉URI
+	 * SpringCloudCommons {@see LoadBalancerAutoConfiguration#LoadBalancerInterceptorConfig}
+	 */
 	@Configuration(proxyBeanMethods = false)
 	@ConditionalOnClass(HttpRequest.class)
 	@ConditionalOnRibbonRestClient
